@@ -12,13 +12,14 @@
         $haslo=$_GET[haslo]; 
   ?>
   
-<FRAMESET cols="150,800">
-	<FRAME noresize="noresize" SRC="index.php">
-	<FRAMESET rows="150,300">
-		<FRAME noresize="noresize" SRC="index2.php">
-		<FRAME noresize="noresize" SRC="index3.php">
+<FRAMESET cols="120,800" frameborder="0">
 
+	<FRAMESET rows="75,300">
+	<FRAME scrolling="NO" frameborder="0" noresize="noresize" SRC="index.php">
+	<FRAME scrolling="NO" frameborder="0" noresize="noresize" SRC="index2.php">
 </FRAMESET>
-</FRAMESET>
+	<FRAMESET rows="150,300">
+		<FRAME scrolling="NO" frameborder="0" noresize="noresize" SRC="index3.php">
+		<FRAME scrolling="NO" frameborder="0" noresize="noresize" SRC="index4.php">
 
 </html>
