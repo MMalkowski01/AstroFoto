@@ -28,7 +28,7 @@ function sprawdz_typ()
 <?php
 function zapisz_plik()
 {
-$lokalizacja = '/home/ziedab/www/Pictures/'.$_FILES['nazwa_pliku']['name'].'';
+$lokalizacja = '//home//ziedab//www/Pictures//'.$_FILES['nazwa_pliku']['name'].'';
 if(is_uploaded_file($_FILES['nazwa_pliku']['tmp_name']))
 {
 if(!move_uploaded_file($_FILES['nazwa_pliku']['tmp_name'], $lokalizacja))
@@ -54,3 +54,45 @@ return true;
   echo "</br>";
   zapisz_plik();
   ?>
+
+<?php
+$old_path = getcwd();
+chdir('/home/ziedab/www');
+$output = shell_exec('./script_convert.bash');
+chdir($old_path);
+  ?>
+
+<?php
+  $local = "Pictures/".$_FILES['nazwa_pliku']['name'].'' ;
+  $thumb = "Thumbnails/".$_FILES['nazwa_pliku']['name'].'' ;
+  echo "</br>";
+  echo 'lokalizacja'. "</br>";
+  echo $local. "</br>";
+  echo $thumb. "</br>"; 
+  echo "</br>";
+?>  
+  
+<?php
+$servername = "localhost";
+$username = "ziedab";
+$password = "bruteforce";
+$dbname = "ziedab";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+  }
+  
+  $sql = "INSERT INTO AstroFoto_Test (link, thumbnail, uzytkownik, Opis)
+  VALUES ('".$local."','". $thumb."','','')";
+  
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+      
+      $conn->close();
+      ?>
